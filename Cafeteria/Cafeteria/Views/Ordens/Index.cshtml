@@ -4,10 +4,11 @@
     ViewBag.Title = "Index";
 }
 
-
+@if (User.IsInRole("admin"))
+{
 <h2>Ordenes</h2>
 <p>
-    @Html.ActionLink("Nueva Orden", "Create",null,new { @class=" btn btn-primary"})
+    @Html.ActionLink("Nueva Orden", "Create", null, new { @class = " btn btn-primary" })
 </p>
 <table class="table">
     <tr>
@@ -37,11 +38,12 @@
             </td>
             <td>
                 
-                @Html.ActionLink("Edit", "Edit", new { id = item.IdOrden },new{ @class = "btn fas fa-edit" }) |
-                @Html.ActionLink("Details", "Details", new { id = item.IdOrden },new { @class=" fas fa-info-circle"}) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.IdOrden}, new { @class = " fas fa-trash" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdOrden }, new { @class = "btn fas fa-edit" }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdOrden }, new { @class = " fas fa-info-circle" }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdOrden }, new { @class = " fas fa-trash" })
             </td>
         </tr>
     }
 
 </table>
+}

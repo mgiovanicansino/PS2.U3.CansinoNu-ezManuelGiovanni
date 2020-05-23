@@ -26,7 +26,7 @@
 
     <!-- Page Wrapper -->
     <div id="wrapper">
-        @if (User.Identity.IsAuthenticated)
+        @if (User.IsInRole("admin"))
         {
             <!-- Sidebar -->
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -95,7 +95,7 @@
 
             <!-- Main Content -->
             <div id="content">
-                @if (User.Identity.IsAuthenticated)
+                @if (User.IsInRole("admin"))
                 {
                     <!-- Topbar -->
                     <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">

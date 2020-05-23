@@ -10,10 +10,11 @@ using Cafeteria.Models;
 
 namespace Cafeteria.Controllers
 {
+    
     public class ProductsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        [Authorize]
+        
         // GET: Products
         public ActionResult Index()
         {
@@ -127,6 +128,11 @@ namespace Cafeteria.Controllers
         {
             var products = db.Products.OrderByDescending(p => p.VecesOrdenado);
             return View(products);
+        }
+        public ActionResult ProductsMenu()
+        {
+            
+            return View(db.Products.ToList());
         }
     }
 }

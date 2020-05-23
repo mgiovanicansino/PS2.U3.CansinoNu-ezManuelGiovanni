@@ -10,7 +10,7 @@ namespace Cafeteria.Controllers
     {
         public ActionResult Index()
         {
-            if (User.Identity.IsAuthenticated)
+            if (User.IsInRole("admin"))
             {
                return  RedirectToAction("Index", "Main");  
             }
@@ -34,6 +34,11 @@ namespace Cafeteria.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        public ActionResult Menu()
+        {
+            ViewBag.Message = "Menu";
+                return View();
         }
     }
 }

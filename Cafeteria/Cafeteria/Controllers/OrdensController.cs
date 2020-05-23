@@ -14,10 +14,11 @@ namespace Cafeteria.Controllers
     public class OrdensController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+       
         // GET: Ordens
         public ActionResult Index()
         {
+            
             var ordens = db.Ordens.Include(o => o.product);
             return View(ordens.ToList());
         }
@@ -36,7 +37,7 @@ namespace Cafeteria.Controllers
             }
             return View(orden);
         }
-
+    
         // GET: Ordens/Create
         public ActionResult Create()
         {
@@ -59,7 +60,7 @@ namespace Cafeteria.Controllers
                              select p).FirstOrDefault();
                 count.VecesOrdenado = count.VecesOrdenado + 1;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ProductsMenu","Products");
             }
 
             ViewBag.IdProduct = new SelectList(db.Products, "IdProduct", "NombreP", orden.IdProduct);
@@ -69,17 +70,21 @@ namespace Cafeteria.Controllers
         // GET: Ordens/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (User.IsInRole("admin"))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                Orden orden = db.Ordens.Find(id);
+                if (orden == null)
+                {
+                    return HttpNotFound();
+                }
+                ViewBag.IdProduct = new SelectList(db.Products, "IdProduct", "NombreP", orden.IdProduct);
+                return View(orden);
             }
-            Orden orden = db.Ordens.Find(id);
-            if (orden == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.IdProduct = new SelectList(db.Products, "IdProduct", "NombreP", orden.IdProduct);
-            return View(orden);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }
 
         // POST: Ordens/Edit/5
