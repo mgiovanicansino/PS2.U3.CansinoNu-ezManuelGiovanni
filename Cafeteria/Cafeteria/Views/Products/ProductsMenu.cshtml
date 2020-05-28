@@ -1,20 +1,61 @@
-﻿@model IEnumerable<Cafeteria.Models.Product>
-
+﻿
     <div>
-
-        @foreach (var item in Model)
-        {
         <div class="row">
             <div class="card " style="max-width:30rem;">
                 <div class="card-body">
-                    <h5 class="card-title">@Html.DisplayFor(modelItem => item.NombreP)</h5>
-                    <p class="card-text">@Html.DisplayFor(modelItem => item.Descripcion)</p>
+                    <h5 class="card-title">
+                        Cafe Mocka
+                    </h5>
+                    <p class="card-text">
+                        Cafe amargo
+                    </p>
                     <a class="btn btn-primary" href="@Url.Action("Create","Ordens")">Ordenar</a>
-                    @Html.ActionLink("Detalles", "Details", new { id = item.IdProduct }, new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Detalles", "Details", new { id = 1 }, new { @class = "btn btn-primary" })
                 </div>
             </div>
         </div>
-        }
+        <div class="row">
+            <div class="card " style="max-width:30rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Cafe Capuchino
+                    </h5>
+                    <p class="card-text">
+                        Cafe capuchino
+                    </p>
+                    <a class="btn btn-primary" href="@Url.Action("Create","Ordens")">Ordenar</a>
+                    @Html.ActionLink("Detalles", "Details", new { id = 2 }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card " style="max-width:30rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Chocolate
+                    </h5>
+                    <p class="card-text">
+                        Chocolate Caliente
+                    </p>
+                    <a class="btn btn-primary" href="@Url.Action("Create","Ordens")">Ordenar</a>
+                    @Html.ActionLink("Detalles", "Details", new { id = 3 }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card " style="max-width:30rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Pan de Muerto
+                    </h5>
+                    <p class="card-text">
+                        Pan selecto para estas fiestas
+                    </p>
+                    <a class="btn btn-primary" href="@Url.Action("Create","Ordens")">Ordenar</a>
+                    @Html.ActionLink("Detalles", "Details", new { id = 4 }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
     </div>
 
 
